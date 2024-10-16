@@ -1,4 +1,8 @@
 # mathwiki
 A semi-random collection of possibly useful facts
 
-[Newton's method](https://github.com/rasigadelab/mathwiki/blob/main/newton.md)
+[Newton's method](newton.md)
+
+[Transition rate matrix](rate_matrix.md)
+
+[Autodiff](reversemode_autodiff.md)
