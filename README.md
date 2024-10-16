@@ -1,4 +1,5 @@
 # mathwiki
+
 A semi-random collection of possibly useful facts
 
 [Newton's method](newton.md)
@@ -8,3 +9,9 @@ A semi-random collection of possibly useful facts
 [Autodiff](reversemode_autodiff.md)
 
 [Bilevel optimization](bilevel.md)
+
+[Expectation over an unknown distribution](taylor_expectation.md)
+
+[Various first and second derivatives](derivatives.md)
+
+[Explicit inverse of small matrices](matrix_inverse.md)
