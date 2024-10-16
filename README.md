@@ -6,3 +6,5 @@ A semi-random collection of possibly useful facts
 [Transition rate matrix](rate_matrix.md)
 
 [Autodiff](reversemode_autodiff.md)
+
+[Bilevel optimization](bilevel.md)
