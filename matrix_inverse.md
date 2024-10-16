@@ -4,11 +4,19 @@ The inverse of a square matrix $A$ exists only if the matrix is invertible (i.e.
 
 ### 1. **Inverse of a $2 \times 2$ Matrix**  
 Let $A$ be a $2 \times 2$ matrix:
-$$A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$$
+
+$$A = \begin{pmatrix} a & b \\ 
+c & d \end{pmatrix}$$
+
 The inverse of $A$, if $\det(A) = ad - bc \neq 0$, is given by:
-$$A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
+
+$$A^{-1} = \frac{1}{\det(A)} \begin{pmatrix} d & -b \\
+-c & a \end{pmatrix}$$
+
 Thus:
-$$A^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
+
+$$A^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\
+-c & a \end{pmatrix}$$
 
 ### 2. **Inverse of a $3 \times 3$ Matrix**  
 Let $A$ be a $3 \times 3$ matrix:
