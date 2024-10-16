@@ -1,3 +1,5 @@
+# Newton's method in optimization
+
 Newton's method is a powerful optimization technique used for finding the local minimum (or maximum) of a scalar function, particularly when the function is differentiable and has a vector argument. Unlike simpler methods like gradient descent, Newton's method leverages both the first and second derivatives of the function, which allows it to converge more quickly in some cases.
 
 ### Newton’s Method Overview
@@ -22,16 +24,17 @@ where:
    
 2. **Compute the Gradient and Hessian**:
    - The gradient $\nabla f(x_k)$ is the vector of first-order partial derivatives:
-     $$     \nabla f(x_k) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right]^\top
-     $$
+
+$$\nabla f(x_k) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right]^\top$$
+     
    - The Hessian $H_f(x_k)$ is the matrix of second-order partial derivatives:
-     $$     H_f(x_k) = \begin{bmatrix}
-     \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \dots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
-     \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \dots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
-     \vdots & \vdots & \ddots & \vdots \\
-     \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \dots & \frac{\partial^2 f}{\partial x_n^2}
-     \end{bmatrix}
-     $$
+
+$$H_f(x_k) = \begin{bmatrix}
+\frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \dots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
+\frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \dots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \dots & \frac{\partial^2 f}{\partial x_n^2}
+\end{bmatrix}$$
 
 3. **Solve the Linear System**: Compute the Newton step by solving:
    $$   p_k = H_f(x_k)^{-1} \nabla f(x_k)
