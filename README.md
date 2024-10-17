@@ -15,3 +15,7 @@ A semi-random collection of possibly useful facts
 [Various first and second derivatives](derivatives.md)
 
 [Explicit inverse of small matrices](matrix_inverse.md)
+
+[Brownian motion](brownian_motion.md)
+
+[Ornstein-Uhlenbeck process](ornstein_uhlenbeck.md)
