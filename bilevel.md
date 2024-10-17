@@ -66,13 +66,13 @@ When using gradient descent methods to solve bilevel optimization problems, the 
 
 #### 1. **Lower-Level Problem Solution via Gradient Descent**
 
-For a given $x$, we can solve the lower-level problem $\min_{y \in Y(x)} f(x, y)$ using a standard gradient descent method. If $y^*(x)$ is the optimal solution to the lower-level problem, we want to update $y$ iteratively using:
+For a given $x$, we can solve the lower-level problem $\min_{y \in Y(x)} f(x, y)$ using a standard gradient descent method. If $y^+(x)$ is the optimal solution to the lower-level problem, we want to update $y$ iteratively using:
 
 $$y_{k+1} = y_k - \eta_y \nabla_y f(x, y_k)$$
 
 where $\eta_y$ is the step size, and $\nabla_y f(x, y_k)$ is the gradient of the lower-level objective function with respect to $y$.
 
-Once we have converged to an approximate optimal solution $y^*(x)$ for a fixed $x$, we can proceed to update $x$.
+Once we have converged to an approximate optimal solution $y^+(x)$ for a fixed $x$, we can proceed to update $x$.
 
 #### 2. **Upper-Level Gradient Computation**
 
@@ -84,28 +84,28 @@ The key difficulty lies in computing $\frac{\partial y(x)}{\partial x}$, the der
 
 ##### **Implicit Differentiation Approach**
 
-If the lower-level problem is solved optimally, we can use the **optimality conditions** of the lower-level problem (assuming $y^*(x)$ satisfies the first-order optimality condition) to compute the derivative of $y(x)$ with respect to $x$. For example, if $f(x, y)$ is smooth, the optimality condition is:
+If the lower-level problem is solved optimally, we can use the **optimality conditions** of the lower-level problem (assuming $y^+(x)$ satisfies the first-order optimality condition) to compute the derivative of $y(x)$ with respect to $x$. For example, if $f(x, y)$ is smooth, the optimality condition is:
 
-$$\nabla_y f(x, y^*(x)) = 0$$
+$$\nabla_y f(x, y^+(x)) = 0$$
 
 Taking the total derivative with respect to $x$ on both sides gives:
 
-$$\nabla_{xy}^2 f(x, y^*(x)) + \nabla_{yy}^2 f(x, y^*(x)) \cdot \frac{\partial y(x)}{\partial x} = 0$$
+$$\nabla_{xy}^2 f(x, y^+(x)) + \nabla_{yy}^2 f(x, y^+(x)) \cdot \frac{\partial y(x)}{\partial x} = 0$$
 
 Solving for $\frac{\partial y(x)}{\partial x}$:
 
-$$\frac{\partial y(x)}{\partial x} = - \left( \nabla_{yy}^2 f(x, y^*(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^*(x))$$
+$$\frac{\partial y(x)}{\partial x} = - \left( \nabla_{yy}^2 f(x, y^+(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^+(x))$$
 
 - $\nabla_{xy}^2 f(x, y)$ is the mixed second-order partial derivative of $f$ with respect to $x$ and $y$.
 - $\nabla_{yy}^2 f(x, y)$ is the Hessian of $f$ with respect to $y$.
 
 Using this, we can compute the upper-level gradient:
 
-$$\nabla_x F(x, y(x)) = \frac{\partial F(x, y)}{\partial x} + \frac{\partial F(x, y)}{\partial y} \cdot \left( - \left( \nabla_{yy}^2 f(x, y^*(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^*(x)) \right)$$
+$$\nabla_x F(x, y(x)) = \frac{\partial F(x, y)}{\partial x} + \frac{\partial F(x, y)}{\partial y} \cdot \left( - \left( \nabla_{yy}^2 f(x, y^+(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^+(x)) \right)$$
 
 This gradient can then be used to update $x$ using gradient descent:
 
-$$x_{k+1} = x_k - \eta_x \nabla_x F(x_k, y^*(x_k))$$
+$$x_{k+1} = x_k - \eta_x \nabla_x F(x_k, y^+(x_k))$$
 
 where $\eta_x$ is the step size for updating $x$.
 
@@ -113,8 +113,8 @@ where $\eta_x$ is the step size for updating $x$.
 
 In practice, bilevel optimization is often solved by iterating between the two levels:
 
-1. **Solve the lower-level problem** to find the optimal $y^*(x_k)$ for the current $x_k$ using gradient descent.
-2. **Compute the upper-level gradient** $\nabla_x F(x_k, y^*(x_k))$ using the chain rule and implicit differentiation.
+1. **Solve the lower-level problem** to find the optimal $y^+(x_k)$ for the current $x_k$ using gradient descent.
+2. **Compute the upper-level gradient** $\nabla_x F(x_k, y^+(x_k))$ using the chain rule and implicit differentiation.
 3. **Update $x_k$** using gradient descent on the upper-level objective function.
 4. **Repeat** until convergence.
 
@@ -160,7 +160,7 @@ where:
 - $H_y(x, y_k) = \nabla^2_y f(x, y_k)$ is the Hessian of the lower-level objective $f(x, y)$ with respect to $y$.
 - $\nabla_y f(x, y_k)$ is the gradient of $f(x, y)$ with respect to $y$.
 
-Newton's method converges quadratically if the Hessian is well-conditioned (i.e., positive definite). This allows for rapid convergence to the solution $y^*(x)$ for a fixed $x$.
+Newton's method converges quadratically if the Hessian is well-conditioned (i.e., positive definite). This allows for rapid convergence to the solution $y^+(x)$ for a fixed $x$.
 
 #### 2. **Upper-Level Gradient and Hessian Calculation**
 
@@ -176,19 +176,19 @@ Here, the key term to compute is $\frac{\partial y(x)}{\partial x}$, which can b
 
 From the first-order optimality condition of the lower-level problem:
 
-$$\nabla_y f(x, y^*(x)) = 0$$
+$$\nabla_y f(x, y^+(x)) = 0$$
 
 Taking the total derivative with respect to $x$:
 
-$$\nabla_{xy}^2 f(x, y^*(x)) + \nabla_{yy}^2 f(x, y^*(x)) \cdot \frac{\partial y(x)}{\partial x} = 0$$
+$$\nabla_{xy}^2 f(x, y^+(x)) + \nabla_{yy}^2 f(x, y^+(x)) \cdot \frac{\partial y(x)}{\partial x} = 0$$
 
 Solving for $\frac{\partial y(x)}{\partial x}$:
 
-$$\frac{\partial y(x)}{\partial x} = - \left( \nabla_{yy}^2 f(x, y^*(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^*(x))$$
+$$\frac{\partial y(x)}{\partial x} = - \left( \nabla_{yy}^2 f(x, y^+(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^+(x))$$
 
 Thus, the gradient of the upper-level problem is:
 
-$$\nabla_x F(x, y(x)) = \frac{\partial F(x, y)}{\partial x} - \frac{\partial F(x, y)}{\partial y} \cdot \left( \nabla_{yy}^2 f(x, y^*(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^*(x))$$
+$$\nabla_x F(x, y(x)) = \frac{\partial F(x, y)}{\partial x} - \frac{\partial F(x, y)}{\partial y} \cdot \left( \nabla_{yy}^2 f(x, y^+(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^+(x))$$
 
 ##### **Hessian Calculation**
 
@@ -201,7 +201,7 @@ The Hessian consists of several terms:
 
 Using implicit differentiation again, we find that the full Hessian $H_x$ is:
 
-$$H_x = \nabla_{xx}^2 F(x, y) - \nabla_{xy}^2 F(x, y) \left( \nabla_{yy}^2 f(x, y^*(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^*(x))$$
+$$H_x = \nabla_{xx}^2 F(x, y) - \nabla_{xy}^2 F(x, y) \left( \nabla_{yy}^2 f(x, y^+(x)) \right)^{-1} \nabla_{xy}^2 f(x, y^+(x))$$
 
 The second term accounts for the effect of the lower-level solution's dependence on $x$.
 
@@ -209,7 +209,7 @@ The second term accounts for the effect of the lower-level solution's dependence
 
 Once we have the gradient $\nabla_x F(x, y(x))$ and the Hessian $H_x$, we can apply Newton's method to update $x$ as follows:
 
-$$x_{k+1} = x_k - H_x^{-1} \nabla_x F(x_k, y^*(x_k))$$
+$$x_{k+1} = x_k - H_x^{-1} \nabla_x F(x_k, y^+(x_k))$$
 
 This update rule incorporates second-order information and is expected to converge quadratically, provided that the Hessian is well-conditioned.
 
@@ -218,15 +218,15 @@ This update rule incorporates second-order information and is expected to conver
 The overall bilevel optimization process using Newton's method can be summarized in the following steps:
 
 1. **Lower-Level Optimization**:
-   - For a given $x_k$, solve the lower-level problem $\min_y f(x_k, y)$ using Newton's method to find $y^*(x_k)$.
+   - For a given $x_k$, solve the lower-level problem $\min_y f(x_k, y)$ using Newton's method to find $y^+(x_k)$.
    
 2. **Upper-Level Gradient and Hessian**:
-   - Compute the upper-level gradient $\nabla_x F(x_k, y^*(x_k))$ using implicit differentiation.
+   - Compute the upper-level gradient $\nabla_x F(x_k, y^+(x_k))$ using implicit differentiation.
    - Compute the upper-level Hessian $H_x$ using second-order derivatives and implicit differentiation.
 
 3. **Upper-Level Newton Update**:
    - Update $x_k$ using the Newton step:
-$$x_{k+1} = x_k - H_x^{-1} \nabla_x F(x_k, y^*(x_k))$$
+$$x_{k+1} = x_k - H_x^{-1} \nabla_x F(x_k, y^+(x_k))$$
 
 4. **Repeat** until convergence, where both the upper-level and lower-level solutions stabilize.
 
