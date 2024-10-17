@@ -1,6 +1,6 @@
-# PHE3ID's Mathematics Micro Wiki
+# PHE3ID's Micro Math Wiki
 
-A semi-random collection of possibly useful facts. Compiled from various sources explored using OpenAI ChatGPT with (very minimal) manual curation. Not to be used for mission-critical tasks.
+A semi-random collection of possibly useful facts compiled from various sources explored using OpenAI ChatGPT with (very minimal) [manual curation](markdown_recipes.md). Not to be used for mission-critical tasks.
 
 ## Optimization
 
@@ -25,3 +25,5 @@ A semi-random collection of possibly useful facts. Compiled from various sources
 
 - [Properties of the transition rate matrix](rate_matrix.md)
 - [Explicit inverse of small matrices](matrix_inverse.md)
+- [Generalized Jukes-Cantor model](generalized_jukes_cantor.md)
+- [Generalized Time-Reversible model](gtr.md)

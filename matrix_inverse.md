@@ -21,7 +21,9 @@ $$A^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\
 ### 2. **Inverse of a $3 \times 3$ Matrix**  
 Let $A$ be a $3 \times 3$ matrix:
 
-$$A = \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix}$$
+$$A = \begin{pmatrix} a & b & c \\
+d & e & f \\
+g & h & i \end{pmatrix}$$
 
 The inverse of $A$, if $\det(A) \neq 0$, can be written as:
 
